@@ -10,7 +10,7 @@ from pydantic.fields import Field
 class Sites(BaseModel):
     id: Optional[PyObjectId] = Field(alias="_id")
     name: str
-    type: Literal['M', 'F', 'Z']
+    type: Literal['M', 'F', 'Z','']
     city: Optional[str]
     country: Optional[str]
     lat: Optional[float] = 0.0

@@ -1,11 +1,12 @@
 from typing import List, Literal, Optional
+from fastapi.openapi.models import APIKey
 from starlette.responses import JSONResponse, Response
 from fastapi import APIRouter, Depends, status
 
 from app.models.user import UserInDB
 from app.models.sites_model import Sites
 from app.models.result import Result
-from app.access import get_actual_user
+from app.access import get_actual_user, get_api_key
 from app.services import sites_service
 from app.validators.mongo import PyObjectId
 from app.utils.responses import KEYS_ERROR
@@ -17,14 +18,33 @@ router = APIRouter()
 @router.get("", response_model=List[Sites], status_code=status.HTTP_200_OK)
 async def get_sites(
     user: Optional[UserInDB] = Depends(get_actual_user), q: Optional[str] = None,
-    type: Literal['M', 'F', 'Z'] = 'M'
+    type: Literal['M', 'F', 'Z',''] = ''
 ):
     search = Sites(name="", type=type)
     if q is not None:
         search.name = q
         items = sites_service.search(item=search)
-    else:
+    elif type == "":
         items = sites_service.get()
+    else:
+        search.name = ""
+        items = sites_service.search(item=search)
+    return items
+    
+@router.get("/search", response_model=List[Sites], status_code=status.HTTP_200_OK)
+async def search_sites_external(
+    user: APIKey = Depends(get_api_key), q: Optional[str] = None,
+    type: Literal['M', 'F', 'Z',''] = ''
+):
+    search = Sites(name="", type=type)
+    if q is not None:
+        search.name = q
+        items = sites_service.search(item=search)
+    elif type == "":
+        items = sites_service.get()
+    else:
+        search.name = ""
+        items = sites_service.search(item=search)
     return items
 
 

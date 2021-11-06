@@ -80,7 +80,21 @@ def getByNameAndNotID(item: Sites):
 
 
 def search(item: Sites):
-    finded = db.sites.find(
+    if item.type == "":
+        finded = db.sites.find(
+        {
+            "$and": [
+                {"disabled": False},
+                {
+                    "$or": [
+                        {"name": {"$regex": item.name, "$options": "i"}},
+                    ]
+                },
+            ]
+        }
+    )
+    else:
+        finded = db.sites.find(
         {
             "$and": [
                 {"disabled": False},
