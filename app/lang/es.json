@@ -1,0 +1,19 @@
+{
+    "success": {
+        "default": "Acción realizada correctamente",
+        "object_inserted": "Objeto Agregado Correctamente",
+        "notify_in_backgroud": "Notificación a ser enviada en Background"
+    },
+    "error": {
+        "default": "Ocurrio un error",
+        "object_not_found": "Objeto no encontrado",
+        "id_not_found": "ID no encontrado"
+        ,"name_already_exist": "Ya existe otro objeto con ese nombre"
+        ,"segment_not_found": "Segmento no encontrado"
+        ,"token_no_valid": "Token no válido"
+        ,"cant_download_image_slack": ":warning: *No se pudo descargar la imagen desde el renderer* :warning:"
+        ,"cant_upload_image_slack": ":warning:* No se pudo cargar la imagen correctamente* :warning:"
+        ,"cant_download_image_whatsapp": "\n⚠ *No se pudo descargar la imagen desde el renderer* ⚠\n"
+        ,"cant_download_image_telegram": "\n⚠ *No se pudo descargar la imagen desde el renderer* ⚠\n"
+    }
+}
