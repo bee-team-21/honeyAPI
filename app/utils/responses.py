@@ -53,3 +53,4 @@ class KEYS_ERROR:
     cant_upload_image_slack = "cant_upload_image_slack"
     cant_download_image_whatsapp = "cant_download_image_whatsapp"
     cant_download_image_telegram = "cant_download_image_telegram"
+    cant_upload_blob = "cant_upload_blob"

@@ -1,5 +1,6 @@
 import ssl
 from urllib.request import Request, urlopen
+import uuid
 from app.core import configuration
 from app.utils.currentmillis import current
 import mimetypes
@@ -18,8 +19,9 @@ def downloadImage(url: str):
         r = urlopen(req,context=ctx,timeout=TIME_OUT)
     content_type = r.info().get('Content-Type')
     content = r.read()
-    filename = str(current()) + mimetypes.guess_extension(content_type)
-    return content, content_type, filename
+    extension = mimetypes.guess_extension(content_type)
+    filename = uuid.uuid4() + extension
+    return content, content_type, filename, extension
 
 
 
@@ -36,5 +38,6 @@ def downloader_file(url: str, header: str = None, header_content: str = None):
         r = urlopen(req,context=ctx,timeout=TIME_OUT)
     content_type = r.info().get('Content-Type')
     content = r.read()
-    filename = str(current()) + mimetypes.guess_extension(content_type)
-    return content, content_type, filename
+    extension = mimetypes.guess_extension(content_type)
+    filename = uuid.uuid4() + extension
+    return content, content_type, filename, extension

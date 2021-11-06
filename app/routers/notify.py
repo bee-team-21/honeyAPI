@@ -296,7 +296,7 @@ async def post_generic_discord(
                 data_file = None
                 #download images
                 if  message.file is not None:
-                    file, content_type, filename = downloader_file(message.file.url, header=message.file.header, header_content=message.file.header_content)
+                    file, content_type, filename,extension = downloader_file(message.file.url, header=message.file.header, header_content=message.file.header_content)
                     data_file = file
                     if SAVE_IMAGES == True:
                         file_service.create(File(file=file, mimetype=content_type, filename=filename ))  # Save Images on Mongo

@@ -15,5 +15,6 @@
         ,"cant_upload_image_slack": ":warning:* No se pudo cargar la imagen correctamente* :warning:"
         ,"cant_download_image_whatsapp": "\n⚠ *No se pudo descargar la imagen desde el renderer* ⚠\n"
         ,"cant_download_image_telegram": "\n⚠ *No se pudo descargar la imagen desde el renderer* ⚠\n"
+        ,"cant_upload_blob": "No se pudo guardar la imagen, intente nuevamente"
     }
 }

@@ -21,6 +21,7 @@ from app.routers import segment
 from app.routers import notify
 from app.routers import history
 from app.routers import sites_route
+from app.routers import user_report_route
 from starlette.middleware.sessions import SessionMiddleware
 from fastapi import FastAPI, BackgroundTasks
 
@@ -57,6 +58,7 @@ app.include_router(discord.router, prefix="/api/discord", tags=["Discord"])
 app.include_router(notify.router, prefix="/api/notify", tags=["Notify"])
 app.include_router(history.router, prefix="/api/history", tags=["History"])
 app.include_router(sites_route.router, prefix="/api/sites", tags=["Sites"])
+app.include_router(user_report_route.router, prefix="/api/user_report", tags=["User Report"])
 
 
 @app.get("/api/docs", tags=["Documentation"])  # Tag it as "documentation" for our docs
