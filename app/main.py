@@ -11,16 +11,16 @@ import uvicorn
 
 from app.core import configuration
 from app.routers import users, oauth_google
-from app.routers import slack
+# from app.routers import slack
 from app.routers import token
-from app.routers import whatsapp
-from app.routers import telegram
+# from app.routers import whatsapp
+# from app.routers import telegram
 from app.routers import discord
-from app.routers import phone
+# from app.routers import phone
 from app.routers import segment
 from app.routers import notify
 from app.routers import history
-
+from app.routers import sites_route
 from starlette.middleware.sessions import SessionMiddleware
 from fastapi import FastAPI, BackgroundTasks
 
@@ -49,13 +49,14 @@ app.include_router(oauth_google.router, prefix="/api/google", tags=["Security Go
 app.include_router(users.router, prefix="/api/users", tags=["Users"])
 app.include_router(segment.router, prefix="/api/segment", tags=["Segment"])
 app.include_router(token.router, prefix="/api/token", tags=["Token"])
-app.include_router(slack.router, prefix="/api/slack", tags=["Slack"])
-app.include_router(whatsapp.router, prefix="/api/whatsapp", tags=["WhatsApp"])
-app.include_router(telegram.router, prefix="/api/telegram", tags=["Telegram"])
+# app.include_router(slack.router, prefix="/api/slack", tags=["Slack"])
+# app.include_router(whatsapp.router, prefix="/api/whatsapp", tags=["WhatsApp"])
+# app.include_router(telegram.router, prefix="/api/telegram", tags=["Telegram"])
 app.include_router(discord.router, prefix="/api/discord", tags=["Discord"])
-app.include_router(phone.router, prefix="/api/phone", tags=["Phone"])
+# app.include_router(phone.router, prefix="/api/phone", tags=["Phone"])
 app.include_router(notify.router, prefix="/api/notify", tags=["Notify"])
 app.include_router(history.router, prefix="/api/history", tags=["History"])
+app.include_router(sites_route.router, prefix="/api/sites", tags=["Sites"])
 
 
 @app.get("/api/docs", tags=["Documentation"])  # Tag it as "documentation" for our docs
