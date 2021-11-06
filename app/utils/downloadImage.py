@@ -20,7 +20,7 @@ def downloadImage(url: str):
     content_type = r.info().get('Content-Type')
     content = r.read()
     extension = mimetypes.guess_extension(content_type)
-    filename = uuid.uuid4() + extension
+    filename = str(uuid.uuid4()) + extension
     return content, content_type, filename, extension
 
 
@@ -39,5 +39,5 @@ def downloader_file(url: str, header: str = None, header_content: str = None):
     content_type = r.info().get('Content-Type')
     content = r.read()
     extension = mimetypes.guess_extension(content_type)
-    filename = uuid.uuid4() + extension
+    filename = str(uuid.uuid4()) + extension
     return content, content_type, filename, extension

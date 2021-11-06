@@ -9,7 +9,7 @@ container_name = APP_STORAGE_CONTAINER
 
 
 def upload(
-    data: BytesIO, extension: str = ".png", metadata: dict = None, tags: dict = None
+    data: bytes, extension: str = ".png", metadata: dict = None, tags: dict = None
 ) -> Union[str, None]:
     # Create the BlobServiceClient object which will be used to create a container client
     blob_service_client = BlobServiceClient.from_connection_string(connect_str)

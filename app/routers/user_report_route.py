@@ -24,7 +24,7 @@ async def search_sites_external(
     user: APIKey = Depends(get_api_key)
 ):
     file, content_type, filename, extension = downloader_file(report.image)
-    url = blobstorage.upload(file=file,extension=extension)
+    url = blobstorage.upload(data=file,extension=extension)
     if url is not None:
         #TODO send to recognition
         print (url)
