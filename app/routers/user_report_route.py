@@ -23,6 +23,7 @@ from app.utils.responses import KEYS_ERROR, get_error_message
 from app.utils.result import get_error
 import requests
 import traceback
+import re
 router = APIRouter()
 
     
@@ -32,6 +33,7 @@ async def search_sites_external(
     background_tasks: BackgroundTasks,
     user: APIKey = Depends(get_api_key)
 ):
+    report.site = re.sub(" \((.*?)\)","",report.site)
     sites = sites_service.getByName(Sites(name=report.site, type=""))
     if sites != []:
         site = sites[0].id
