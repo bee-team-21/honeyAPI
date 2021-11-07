@@ -21,11 +21,16 @@ class Risk(BaseModel):
     grade: str
     confidence: float
 
+class DetectedObjects(BaseModel):
+    name:  Optional[str]
+    confidence:  Optional[float]
+    flg_animal: Optional[bool] = False
 class AnalysisResult(BaseModel):
     id: Optional[PyObjectId] = Field(alias="_id")
     user_id : str
     image_url: str
     tags:List[Tag]
+    detected_objects : Optional[List[DetectedObjects]]
     captions:Optional[List[Captions]]
     risk: List[Risk]
     text: Optional[str]
