@@ -22,6 +22,7 @@ class History(BaseModel):
     activator: Optional[str] = None
     plataform: Optional[str] = None
     disabled: Optional[bool] = False
+    image: Optional[str] = None
     class Config:
         arbitrary_types_allowed = True
         json_encoders = {

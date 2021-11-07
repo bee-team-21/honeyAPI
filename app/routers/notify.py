@@ -305,12 +305,12 @@ async def post_generic_discord(
                         response = discord_webhook.send_message(discord.channel_webhook, text,data_file, content_type, filename)
                     else:
                         response = discord_webhook.send_message(discord.channel_webhook, text)
-                log = History()
-                log.username_insert = user.get("username")
-                log.plataform = Plataform.discord
-                log.request_payload = text
-                log.response_code = response.status_code
-                log.response_text = response.text
-                log.activator = post_generic_discord.__name__
-                history_service.create(log)
+                    log = History()
+                    log.username_insert = user.get("username")
+                    log.plataform = Plataform.discord
+                    log.request_payload = text
+                    log.response_code = response.status_code
+                    log.response_text = response.text
+                    log.activator = post_generic_discord.__name__
+                    history_service.create(log)
     return item

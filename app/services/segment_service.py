@@ -1,3 +1,4 @@
+from typing import Literal
 from app.core.database import db
 from app.models.segment import Segment
 from datetime import datetime
@@ -89,6 +90,20 @@ def search(item: Segment):
                         {"name": {"$regex": item.name, "$options": "i"}},
                     ]
                 },
+            ]
+        }
+    )
+    items = []
+    for find in finded:
+        items.append(Segment(**find))
+    return items
+
+def getByRisk(risk: Literal['low','mid','high']):
+    finded = db.segment.find(
+        {
+            "$and": [
+                {"disabled": False},
+                {"risk": risk},
             ]
         }
     )

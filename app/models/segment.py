@@ -1,7 +1,7 @@
 from datetime import datetime
 from bson import ObjectId
 from app.validators.mongo import PyObjectId
-from typing import Optional
+from typing import Literal, Optional
 from pydantic import BaseModel
 from pydantic.fields import Field
 
@@ -10,6 +10,7 @@ class Segment(BaseModel):
     id: Optional[PyObjectId] = Field(alias="_id")
     name: str
     active: Optional[bool] = True
+    risk: Optional[Literal['low','mid','high']] = None
     disabled: Optional[bool] = False
     date_insert: Optional[datetime] = None
     date_update: Optional[datetime] = None
