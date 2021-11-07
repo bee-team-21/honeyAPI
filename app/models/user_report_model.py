@@ -19,7 +19,7 @@ class UserReportResponse(BaseModel):
 class UserReport(BaseModel):
     id: Optional[PyObjectId] = Field(alias="_id")
     url: str
-    id_site: Optional[PyObjectId]
+    id_site: Optional[PyObjectId] = None
     lat: Optional[float] = 0.0
     long: Optional[float] = 0.0
     disabled: Optional[bool] = False

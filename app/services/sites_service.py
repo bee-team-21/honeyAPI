@@ -1,3 +1,4 @@
+from typing import List
 from app.core.database import db
 from app.models.sites_model import Sites
 from datetime import datetime
@@ -64,7 +65,7 @@ def get():
         items.append(Sites(**find))
     return items
 
-def getByName(item: Sites):
+def getByName(item: Sites) -> List[Sites]:
     finded = db.sites.find({"name": item.name, "disabled": False})
     items = []
     for find in finded:

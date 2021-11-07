@@ -9,3 +9,5 @@ class Risk(BaseModel):
     imageBinary: Optional[bytes]
     imageContentType: Optional[str]
     imageFilename: Optional[str]
+    site: Optional[str]
+    gps: Optional[str]

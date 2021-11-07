@@ -7,6 +7,7 @@ from app.models.segment import Segment
 from app.services import discord_service, history_service
 from app.utils import discord_webhook
 from app.utils.downloadImage import downloader_file
+from app.utils.riskText import riskColor
 def write_segments_risk(risk: Risk, segments: List[Segment], user: str):
     #Obtain Discord Webhooks
     item_discord = []
@@ -18,9 +19,12 @@ def write_segments_risk(risk: Risk, segments: List[Segment], user: str):
         )
     if item_discord != []:
         #Prepare notification
-        text = risk.detail
+        initResponse = riskColor(risk.risk)
+        text='{} {} Reporte en: {}. '.format(initResponse,risk.detail,risk.site)
+        # text_en = '{} {} Report from: {}. '.format(initResponse,risk.detail,risk.site)
+        finalMessage= text + risk.gps
         for discord in item_discord:
-            response = discord_webhook.send_message(discord.channel_webhook, text,risk.imageBinary, risk.imageContentType, risk.imageFilename)
+            response = discord_webhook.send_message(discord.channel_webhook, finalMessage,risk.imageBinary, risk.imageContentType, risk.imageFilename)
             log = History()
             log.username_insert = user
             log.plataform = Plataform.discord
