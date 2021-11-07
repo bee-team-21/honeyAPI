@@ -15,7 +15,7 @@ from app.models.user_report_model import UserReport, UserReportBot, UserReportRe
 from app.models.result import Result
 from app.access import get_actual_user, get_api_key
 from app.services import analysis_service, segment_service, sites_service, user_report_service
-from app.utils import blobstorage
+from app.utils import blobstorage, facebook_post
 from app.utils.downloadImage import downloader_file
 from app.utils.riskText import riskColor
 from app.validators.mongo import PyObjectId
@@ -89,6 +89,9 @@ async def search_sites_external(
             background_tasks.add_task(write_segments_risk, risk=risk,segments=segments,user=user.get("username"))
         initResponse = riskColor(risk.risk)
         detailResponse='{} {} Reporte en: {}. '.format(initResponse,risk.detail,report.site)
+        # fb post
+        facebook_post.post_image(detailResponse,url)
+
         # detailResponse_en = '{} {} Report from: {}. '.format(initResponse,risk.detail,report.site)
         finalMessage= detailResponse + risk.gps
         return UserReportResponse(detail=finalMessage)
