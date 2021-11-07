@@ -77,6 +77,7 @@ async def search_sites_external(
 
             analysisResult.site = report.site
             analysisResult.site_gps = risk.gps
+            analysisResult.id_site = site
             res = analysis_service.create(analysisResult)
         except:
             traceback.print_exc()
