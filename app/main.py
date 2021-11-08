@@ -10,7 +10,7 @@ from fastapi.openapi.utils import get_openapi
 import uvicorn
 
 from app.core import configuration
-from app.routers import users, oauth_google
+from app.routers import privacy_policy_route, users, oauth_google
 # from app.routers import slack
 from app.routers import token
 # from app.routers import whatsapp
@@ -59,6 +59,7 @@ app.include_router(notify.router, prefix="/api/notify", tags=["Notify"])
 app.include_router(history.router, prefix="/api/history", tags=["History"])
 app.include_router(sites_route.router, prefix="/api/sites", tags=["Sites"])
 app.include_router(user_report_route.router, prefix="/api/user_report", tags=["User Report"])
+app.include_router(privacy_policy_route.router, prefix="/privacy-policy", tags=["Privacy Policy"])
 
 
 @app.get("/api/docs", tags=["Documentation"])  # Tag it as "documentation" for our docs
